@@ -72,7 +72,7 @@ Substituir COLE_SEU_TOKEN_AQUI e COLE_SEU_CHAT_ID_AQUI pelo token do seu bot Tel
 ```text
 Execute:
 
-```ruby
+
 sudo systemctl status psad
 
 Depois:
@@ -82,7 +82,7 @@ sudo psad --Status
 ou
 
 sudo psad -S
-```
+
 Se aparecer que o daemon está ativo, ótimo.
 
 
