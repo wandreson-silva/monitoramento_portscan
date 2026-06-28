@@ -73,6 +73,7 @@ Substituir COLE_SEU_TOKEN_AQUI e COLE_SEU_CHAT_ID_AQUI pelo token do seu bot Tel
 Execute:
 
 
+```ruby
 sudo systemctl status psad
 
 Depois:
@@ -82,7 +83,7 @@ sudo psad --Status
 ou
 
 sudo psad -S
-
+```
 Se aparecer que o daemon está ativo, ótimo.
 
 
@@ -91,40 +92,41 @@ Se aparecer que o daemon está ativo, ótimo.
 Execute:
 ```ruby
 sudo iptables -L -n -v
-
+```
 Você deverá ver regras semelhantes a:
-
+```ruby
 LOG  tcp  --  0.0.0.0/0   0.0.0.0/0   tcp flags:FIN,SYN,RST,ACK/SYN LOG
-
+```
 Se não aparecer, adicione:
-
+```ruby
 sudo iptables -A INPUT -p tcp --syn -j LOG --log-prefix "PSAD_SCAN: "
 ```
 
 # 3º Veja se o Linux está registrando os logs
 
 Em outra janela do terminal execute:
+
 ```ruby
 sudo journalctl -kf
 
 ou
 
 sudo dmesg -w
-
+```
 
 Agora faça um escaneamento.
 
 Se aparecer algo parecido com
-
+```ruby
 PSAD_SCAN: IN=eth0 OUT=
 SRC=192.168.1.15
 DST=192.168.1.20
 PROTO=TCP
 SPT=45231
 DPT=22
-
-está funcionando.
 ```
+está funcionando.
+
 
 # 4º Faça um teste com Nmap
 
@@ -132,14 +134,18 @@ De outro computador da rede execute:
 
 ```ruby
 nmap -Pn -sS IP_DO_SERVIDOR
-
+```
 Depois faça um teste mais agressivo:
 
+```ruby
 nmap -A -T4 IP_DO_SERVIDOR
+```
 
 Depois:
 
+```ruby
 sudo psad -S
+```
 
 Você deverá ver algo semelhante a:
 
@@ -148,7 +154,7 @@ Top scanning IP
 192.168.1.15
 
 Danger level: 5
-```
+
 # 5º Teste um port scan mais rápido
 ```ruby
 nmap -sS -p- -T5 IP_DO_SERVIDOR
@@ -170,6 +176,7 @@ O psad consegue bloquear o IP automaticamente.
 
 Edite:
 
+```ruby
 sudo nano /etc/psad/psad.conf
 
 Procure:
@@ -183,19 +190,22 @@ ENABLE_AUTO_IDS             Y;
 Depois:
 
 AUTO_IDS_DANGER_LEVEL       3;
-
+```
 Assim, qualquer IP que atingir nível 3 será bloqueado.
 
 Reinicie:
-
+```ruby
 sudo systemctl restart psad
-
+```
 # 8º Verifique se o bloqueio ocorreu
-sudo iptables -L -n
 
+```ruby
+sudo iptables -L -n
+```
 Você deverá ver uma regra semelhante a:
 
 DROP all -- 192.168.1.15 0.0.0.0/0
+
 ```
 
 
