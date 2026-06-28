@@ -110,7 +110,7 @@ sudo journalctl -kf
 ou
 
 sudo dmesg -w
-```
+
 
 Agora faça um escaneamento.
 
@@ -124,6 +124,7 @@ SPT=45231
 DPT=22
 
 está funcionando.
+```
 
 # 4º Faça um teste com Nmap
 
@@ -139,7 +140,7 @@ nmap -A -T4 IP_DO_SERVIDOR
 Depois:
 
 sudo psad -S
-```
+
 Você deverá ver algo semelhante a:
 
 Top scanning IP
@@ -147,7 +148,7 @@ Top scanning IP
 192.168.1.15
 
 Danger level: 5
-
+```
 # 5º Teste um port scan mais rápido
 ```ruby
 nmap -sS -p- -T5 IP_DO_SERVIDOR
