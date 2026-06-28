@@ -90,14 +90,17 @@ Se aparecer que o daemon está ativo, ótimo.
 # 2º Verifique se o iptables está gerando logs
 
 Execute:
+
 ```ruby
 sudo iptables -L -n -v
 ```
 Você deverá ver regras semelhantes a:
+
 ```ruby
 LOG  tcp  --  0.0.0.0/0   0.0.0.0/0   tcp flags:FIN,SYN,RST,ACK/SYN LOG
 ```
 Se não aparecer, adicione:
+
 ```ruby
 sudo iptables -A INPUT -p tcp --syn -j LOG --log-prefix "PSAD_SCAN: "
 ```
