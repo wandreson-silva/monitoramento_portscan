@@ -64,16 +64,13 @@ chmod +x monitoramento_portscan.sh
 ```text
 Substituir COLE_SEU_TOKEN_AQUI e COLE_SEU_CHAT_ID_AQUI pelo token do seu bot Telegram e seu chat_id
 (Opcional) configurar um e-mail se quiser receber alertas por e-mail também
-
 ```
 
 # 1º Verifique se o psad está funcionando
 
-```text
 Execute:
 
-
-
+```ruby
 sudo systemctl status psad
 
 Depois:
@@ -83,6 +80,7 @@ sudo psad --Status
 ou
 
 sudo psad -S
+```
 
 Se aparecer que o daemon está ativo, ótimo.
 
